@@ -4,7 +4,11 @@ MAINTAINER Javier Domingo Cansino <javierdo1@gmail.com>
 
 RUN pacman -Sy --noconfirm archlinux-keyring
 RUN pacman -Su --force --noconfirm
-RUN pacman -S --noconfirm weechat perl python2 lua tcl ruby aspell guile
+RUN pacman -S --noconfirm salt python2-pygit2
 
-EXPOSE 9000
-CMD weechat
+EXPOSE 4505
+EXPOSE 4506
+
+VOLUME [ "/etc/salt", "/var/cache/salt", "/var/logs/salt", "/srv/salt"]
+
+CMD salt-master
